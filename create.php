@@ -1,6 +1,6 @@
 <?php
 
-    // var_dump($_POST);
+    //var_dump($_POST);
 
     session_start();
     
@@ -16,6 +16,8 @@
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //echo "Connected successfully";
     }  
+
+    
       catch(PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
     }
@@ -72,21 +74,27 @@
 
         
 
-        <header class="page-header header container-fluid">
-
-            <div class="overlay"></div> <!--this is the fading color overlay for the background image-->
-
-            <!--this is the main text at the center of the page-->
-            <div class="description">
-                <h1>Welcome to CollectionHub!</h1><br><br>
-                <!-- <p>Lorem iue interdum quam odio, quis placerat ante luctus eu. 
-                   Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
-                 -->
-                <a href="create.php" class="btn btn-outline-secondary btn-lg" role="button" >Click here to create your first Collection!</a> <!--THIS LINKS TO THE CREATE PAGE-->
-            </div> 
-
-            
-
+    <header class="page-header header container-fluid">
+            <!-- <div class="overlay"></div>        -->
+                        
+            <div class="container" style="width:500px;">  
+                <?php  
+                if(isset($message))  
+                {  
+                     echo '<label class="text-danger">'.$message.'</label>';  
+                }  
+                ?>  
+                <h3 >Create your new Collection!</h3><br />  
+                <form action="login_succes.php"  method="POST">  
+                     <label>Collection Name</label>  
+                     <input type="text" name="collectionname" class="form-control" />  
+                     <br />  
+                     <label>Collection Category</label>  
+                     <input type="text" name="collectioncategory" class="form-control" />  
+                     <br /> 
+                     <input type="submit" name="create" class="btn btn-info" value="Create" />  
+                </form>  
+           </div>
         </header>
 
 

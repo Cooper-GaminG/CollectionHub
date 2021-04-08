@@ -161,9 +161,6 @@ try {
                      <input type="submit" name="login" class="btn btn-info" value="Sign Up" />  
                 </form>  
            </div>
-
-
-
         </header>
 
 
