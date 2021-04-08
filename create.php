@@ -1,25 +1,28 @@
 <?php
 
-//in DB, collectors table, handelingen, daar staan de users die toegang hebben tot de database met de bijbehorende servernaam en username.
+    // var_dump($_POST);
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$databasename = "collectorsedition";
+    session_start();
+    
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $databasename = "collectorsedition";
+    $message = "";
+    
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //echo "Connected successfully";
+    }  
+      catch(PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
+    }
 
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "Connected successfully";
-}  
-  catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
 
+    ?>
 
-
-?>
 
 <!DOCTYPE html>
 
@@ -46,7 +49,7 @@ try {
 
     <div class="main">
         <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="index.html">CollectionHub</a>
+            <a class="navbar-brand" href="index.php">CollectionHub</a>
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -76,10 +79,10 @@ try {
             <!--this is the main text at the center of the page-->
             <div class="description">
                 <h1>Welcome to CollectionHub!</h1><br><br>
-                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. 
+                <!-- <p>Lorem iue interdum quam odio, quis placerat ante luctus eu. 
                    Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
                  -->
-                <a href="login.php" class="btn btn-outline-secondary btn-lg" role="button" >Sign up to create your first Collection!</a> <!--THIS LINKS TO THE LOGING/SIGNUP PAGE-->
+                <a href="create.php" class="btn btn-outline-secondary btn-lg" role="button" >Click here to create your first Collection!</a> <!--THIS LINKS TO THE CREATE PAGE-->
             </div> 
 
             

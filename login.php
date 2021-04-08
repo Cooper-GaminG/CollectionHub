@@ -24,22 +24,31 @@ try {
         }
         else
         {
-            $query = "INSERT INTO collectors (name, surname, username, password, email) VALUES (:name, :surname, :username, :password, :email )";
+            $query = "INSERT INTO collectors (name, surname, username, password, email) 
+            VALUES (:name, :surname, :username, :password, :email )";
             $statement = $conn->prepare($query);
-            $statement->execute(
-                array(
-                    'name'      =>      $_POST["name"],
-                    'surname'      =>      $_POST["surname"],
-                    'username'      =>      $_POST["username"],
-                    'password'      =>      $_POST["password"],
-                    'email'      =>      $_POST["email"]
-                )
-            );
+
+            $statement->bindParam(':name', $name);
+            $statement->bindParam(':surname', $surname);
+            $statement->bindParam(':username', $username);
+            $statement->bindParam(':password', $password);
+            $statement->bindParam(':email', $email);
+
+
+            $name      =      $_POST["name"];
+            $surname      =      $_POST["surname"];
+            $username      =      $_POST["username"];
+            $password      =      $_POST["password"];
+            $email      =      $_POST["email"];
+
+
+            $statement->execute();
+
             $count = $statement->rowCount();
             if($count > 0)
             {
-                $_SESSION["name"] = $_POST["name"];
-                header("location:login_success.php");
+                $_SESSION["name"] = $_POST["username"];
+                header("location:login_succes.php");
             }
             else
             {
@@ -97,19 +106,19 @@ try {
         <!--THIS IS THE NAVBAR-->
     <div class="main">
         <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="index.html">CollectionHub</a>
+            <a class="navbar-brand" href="index.php">CollectionHub</a>
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#"></a>                        
                         <div class="form-group has-search">
                             <span class="fa fa-search form-control-feedback"></span>
                             <input type="text" class="form-control" placeholder="Search">
                           </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#">Profile</a>
                     </li>
@@ -133,7 +142,7 @@ try {
                 }  
                 ?>  
                 <h3 >Create your CollectionHub account</h3><br />  
-                <form method="post">  
+                <form action="login_succes.php"  method="POST">  
                      <label>Name</label>  
                      <input type="text" name="name" class="form-control" />  
                      <br />  
@@ -149,7 +158,7 @@ try {
                      <label>Email</label>  
                      <input type="email" name="email" class="form-control" />  
                      <br />  
-                     <input type="submit" name="login" class="btn btn-info" value="Login" />  
+                     <input type="submit" name="login" class="btn btn-info" value="Sign Up" />  
                 </form>  
            </div>
 
