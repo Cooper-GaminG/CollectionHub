@@ -40,7 +40,7 @@
 									<td><input type="text" name="edit_category" value="<?php echo $row['Label']; ?>"></td>
 									<td>
 										<a href="category.php" class="btn btn-danger">Cancel</a>
-										<a type="submit" class="btn btn-info" name="update">Confirm</a>
+										<button type="submit" class="btn btn-info" name="update">Confirm</button>
 									</td>
 								</form>
 							<?php else: ?>
