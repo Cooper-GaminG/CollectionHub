@@ -69,7 +69,6 @@ try {
                             $username = $row["Username"];
                             $hashed_password = $row["Password"];
 
-                            
 
                             if(password_verify($password, $hashed_password)){
                                 // password is correct, so start new session
