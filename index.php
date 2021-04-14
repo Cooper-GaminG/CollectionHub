@@ -80,6 +80,8 @@ try {
                    Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
                  -->
                 <a href="register.php" class="btn btn-outline-secondary btn-lg" role="button" >Sign up to create your first Collection!</a> <!--THIS LINKS TO THE register PAGE-->
+
+                <a href="inlog.php" class="btn btn-outline-secondary btn-lg" role="button" >Already have an account? Login here!</a> <!--THIS LINKS TO THE login PAGE-->
             </div> 
 
             
