@@ -57,7 +57,7 @@ try {
             if($count > 0)
             {
                 $_SESSION["username"] = $_POST["username"];
-                header("location:register_success.php");
+                header("location:inlog.php");
             }
             else
             {
