@@ -10,10 +10,6 @@ $password = "";
 $databasename = "collectorsedition";
 $message = "";
 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: login_succes.php");
-    exit;
-}
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
   // set the PDO error mode to exception

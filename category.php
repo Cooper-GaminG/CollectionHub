@@ -26,6 +26,7 @@
 					</div>
 					<div>
 						<button type="submit" class="btn btn-primary" name="save-category">Add</button>
+						<a href="welcome.php" class="btn btn-danger">Back</a>
 					</div>
 				</form>
 			</div>
