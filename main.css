@@ -87,3 +87,8 @@ html,body{
     font-weight: bold;
 }
 
+.wrapper{
+    width: 500px;
+    padding: 20px;
+}
+

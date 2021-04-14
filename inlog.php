@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+// var_dump($_SESSION);
 //in DB, collectors table, handelingen, daar staan de users die toegang hebben tot de database met de bijbehorende servernaam en username.
 
 $servername = "127.0.0.1";
@@ -20,6 +22,12 @@ try {
 
   $username = $password = "";
   $username_err = $password_err = $login_err = "";
+
+  function pr($data, $kill_script = false)
+{
+    echo '<pre>'.print_r($data,1).'</pre>';
+    if($kill_script) exit;
+ }
 
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -43,32 +51,33 @@ try {
         // Validate Credentials
         if(empty($username_err) && empty($password_err)){
             //prepare a select statement
-            $sql = "SELECT UserID, username, password FROM collectors WHERE username = :username";
+            $sql = "SELECT UserID, Username, Password FROM collectors WHERE username = :username";
     
 
             if($stmt = $conn->prepare($sql)){
                 // bind variables to the prepared statement as parameters
                 $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
                 //set parameters
                 $param_username = trim($_POST["username"]);
-
-                //attempt to execute the prepared statement
                 if($stmt->execute()){
 
                     // check if username exits, if yes then verify password
+                    
                     if($stmt->rowCount() == 1){
                         if($row = $stmt->fetch()){
-                            $id = $row["UserID"];
-                            $username = $row["username"];
-                            $hashed_password = $row["password"];
+                            $UserID = $row["UserID"];
+                            $username = $row["Username"];
+                            $hashed_password = $row["Password"];
+
+                            
+
                             if(password_verify($password, $hashed_password)){
                                 // password is correct, so start new session
                                 session_start();
-
+                                
                                 //store data in session variables
                                 $_SESSION["loggedin"] = true;
-                                $_SESSION["UserID"] = $id;
+                                $_SESSION["UserID"] = $UserID;
                                 $_SESSION["username"] = $username;
 
                                 //redirect user to welcome page
@@ -76,14 +85,14 @@ try {
                             }
                             else{
                                 //invalid password, display error message
-                                $login_err = "Invalid username or password.";
+                                $login_err = "Invalid username or password. 1";
                             }
                         }
                     }
                     else{
                         //username doesn't exist, display error message
 
-                        $login_err = "Invalid username or password.";
+                        $login_err = "Invalid username or password. 2";
                     }   
                 }
                 else{
@@ -98,6 +107,10 @@ try {
         //close connection
         unset($conn);
     }
+
+
+
+
 
 }
   catch(PDOException $e) {
@@ -201,7 +214,7 @@ try {
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" name="login" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>

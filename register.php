@@ -14,7 +14,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //echo "Connected successfully";
 
-  if(isset($_POST["login"])){
+  if(isset($_POST["register"])){
 
     var_dump($_POST);
 
@@ -24,7 +24,7 @@ try {
         }
         else
         {
-            $query = "INSERT INTO collectors (name, surname, username, password, email) 
+            $query = "INSERT INTO collectors (Name, Surname, Username, Password, Email) 
             VALUES (:name, :surname, :username, :password, :email )";
             $statement = $conn->prepare($query);
 
@@ -34,6 +34,12 @@ try {
             $statement->bindParam(':password', $password);
             $statement->bindParam(':email', $email);
 
+            // $statement->bindParam(":name", $param_name, PDO::PARAM_STR);
+            // $statement->bindParam(":surname", $param_surname, PDO::PARAM_STR);
+            // $statement->bindParam(":username", $param_username, PDO::PARAM_STR);
+            // $statement->bindParam(":password", $param_password, PDO::PARAM_STR);
+            // $statement->bindParam(":email", $param_email, PDO::PARAM_STR);
+
 
             $name      =      $_POST["name"];
             $surname      =      $_POST["surname"];
@@ -41,14 +47,16 @@ try {
             $password      =      $_POST["password"];
             $email      =      $_POST["email"];
 
+            // $param_username = $username;
+            // $param_password = password_hash($password, PASSWORD_DEFAULT);
 
             $statement->execute();
 
             $count = $statement->rowCount();
             if($count > 0)
             {
-                $_SESSION["name"] = $_POST["username"];
-                header("location:login_succes.php");
+                $_SESSION["username"] = $_POST["username"];
+                header("location:register_success.php");
             }
             else
             {
@@ -142,7 +150,7 @@ try {
                 }  
                 ?>  
                 <h3 >Create your CollectionHub account</h3><br />  
-                <form action="login_succes.php"  method="POST">  
+                <form action=""  method="POST">  
                      <label>Name</label>  
                      <input type="text" name="name" class="form-control" />  
                      <br />  
@@ -158,7 +166,7 @@ try {
                      <label>Email</label>  
                      <input type="email" name="email" class="form-control" />  
                      <br />  
-                     <input type="submit" name="login" class="btn btn-info" value="Sign Up" />  
+                     <input type="submit" name="register" class="btn btn-info" value="Sign Up" />  
                 </form>  
            </div>
         </header>

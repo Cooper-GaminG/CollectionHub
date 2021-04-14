@@ -1,8 +1,9 @@
 <?php
 
-    //var_dump($_POST);
 
     session_start();
+
+    //var_dump($_SESSION);
     
     $servername = "127.0.0.1";
     $username = "root";

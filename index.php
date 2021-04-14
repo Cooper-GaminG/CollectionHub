@@ -79,7 +79,7 @@ try {
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. 
                    Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
                  -->
-                <a href="login.php" class="btn btn-outline-secondary btn-lg" role="button" >Sign up to create your first Collection!</a> <!--THIS LINKS TO THE LOGING/SIGNUP PAGE-->
+                <a href="register.php" class="btn btn-outline-secondary btn-lg" role="button" >Sign up to create your first Collection!</a> <!--THIS LINKS TO THE register PAGE-->
             </div> 
 
             
