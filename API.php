@@ -1,4 +1,6 @@
 <?php 
+	session_start();
+
 	$url = 'localhost';
 	$database = 'collectorsedition';
 	$username = 'root';
@@ -8,7 +10,7 @@
 
 	$conn = mysqli_connect($url, $username, $password, $database);
 
-	$result = $conn->query("SELECT * FROM categories") or die($conn->error());
+	$result = $conn->query("SELECT * FROM categories WHERE UserID=$_SESSION[UserID]") or die($conn->error());
 
 	$label = '';
 
@@ -28,7 +30,7 @@
 		$category = strtolower($category);
 		$category = addslashes($category);
 
-		$conn->query("INSERT INTO categories (Category, Label) VALUES('$category', '$label')") or die($conn->error);
+		$conn->query("INSERT INTO categories (Category, Label, UserID) VALUES('$category', '$label', '$_SESSION[UserID]')") or die($conn->error);
 
 		header("location: category.php");
 	}
