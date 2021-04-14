@@ -68,7 +68,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <!-- <p>Lorem iue interdum quam odio, quis placerat ante luctus eu. 
                    Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
                  -->
-                <a href="create.php" class="btn btn-outline-secondary btn-lg" role="button" >Click here to create your first Collection!</a> <!--THIS LINKS TO THE CREATE PAGE-->
+                <a href="category.php" class="btn btn-outline-secondary btn-lg" role="button" >Click here to create your first Collection!</a> <!--THIS LINKS TO THE CREATE PAGE-->
             </div> 
 
             
