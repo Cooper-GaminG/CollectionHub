@@ -8,6 +8,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+include 'REST.php';
+
+$resultCategory = $conn->query("SELECT * FROM categories WHERE UserID=$_SESSION[UserID]") or die($conn->error());
 ?>
 
 <!DOCTYPE html>
@@ -56,24 +59,22 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </nav>
     </div>
 
-        
+            <header class="page-header header container-fluid">
 
-        <header class="page-header header container-fluid">
+                <div class="overlay"></div> <!--this is the fading color overlay for the background image-->
 
-            <div class="overlay"></div> <!--this is the fading color overlay for the background image-->
+                <!--this is the main text at the center of the page-->
+                <div class="description">
+                    <h1>Welcome to CollectionHub!</h1><br><br>
+                    <!-- <p>Lorem iue interdum quam odio, quis placerat ante luctus eu. 
+                       Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
+                     -->
+                    <a href="category.php" class="btn btn-outline-secondary btn-lg" role="button" ><?php if (!$row = $resultCategory->fetch_assoc()): ?>Click here to create your first Collection!<?php else:?>Click here to see your collections<?php endif; ?></a> <!--THIS LINKS TO THE CREATE PAGE-->
+                </div> 
 
-            <!--this is the main text at the center of the page-->
-            <div class="description">
-                <h1>Welcome to CollectionHub!</h1><br><br>
-                <!-- <p>Lorem iue interdum quam odio, quis placerat ante luctus eu. 
-                   Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
-                 -->
-                <a href="category.php" class="btn btn-outline-secondary btn-lg" role="button" >Click here to create your first Collection!</a> <!--THIS LINKS TO THE CREATE PAGE-->
-            </div> 
+                
 
-            
-
-        </header>
+            </header>
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
