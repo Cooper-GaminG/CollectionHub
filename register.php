@@ -45,6 +45,7 @@ try {
             $surname      =      $_POST["surname"];
             $username      =      $_POST["username"];
             $password      =      $_POST["password"];
+            $password      =      password_hash($password, PASSWORD_DEFAULT);
             $email      =      $_POST["email"];
 
             // $param_username = $username;
